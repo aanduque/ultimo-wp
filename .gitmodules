@@ -1,0 +1,3 @@
+[submodule "paradox"]
+	path = paradox
+	url = https://github.com/aanduque/paradox.git
