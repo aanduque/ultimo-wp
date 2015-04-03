@@ -1,0 +1,200 @@
+/**
+ *
+ * Admin Menu styles down
+ *
+ */
+
+// Abstract displays
+#adminmenu .wp-submenu,
+#adminmenu .wp-has-current-submenu .wp-submenu,
+#adminmenu .wp-has-current-submenu.opensub .wp-submenu,
+.folded #adminmenu .wp-has-current-submenu .wp-submenu,
+#adminmenu a.wp-has-current-submenu:focus + .wp-submenu {
+  // background: $menu-submenu-background;
+  background: transparent;
+  position: static !important;
+  box-shadow: none !important;
+  // display: block !important;
+}
+
+// - - - - - - - - - - - - - - 
+// Menu Adaptações para ficar com PSD
+// - - - - - - - - - - - - - - 
+
+// Sorted Icon color
+$list: #9c27b0, #795548, #689f38, #db4437, #ff6839, #3f51b5, #303F9F, #00bcd4, #8BC34A, #F44336, #FFA000, #607D8B, #616161, #616161, #7C4DFF, #9c27b0, #795548, #689f38, #db4437, #ff6839, #3f51b5, #303F9F, #00bcd4, #8BC34A, #F44336, #FFA000, #607D8B, #616161, #616161, #7C4DFF, #9c27b0, #795548, #689f38, #db4437, #ff6839, #3f51b5, #303F9F, #00bcd4, #8BC34A, #F44336, #FFA000, #607D8B, #616161, #616161, #7C4DFF;
+
+$index: 1;
+@each $color in $list {
+  #adminmenu li.menu-top:not(.wp-menu-separator):nth-child(#{$index}) {
+    div.wp-menu-image, div.wp-menu-image:before {
+      color: nth($list, $index) !important;
+    }
+  }
+  
+  $index: $index + 1;
+}
+
+// Menu head
+#adminmenu .wp-submenu-head, #adminmenu a.menu-top {
+  @include transition(all 100ms ease);
+  font-size: 14px;
+  padding: 10px 24px;
+  
+  &:hover,
+  &:focus {
+    background: #f9f9f9 !important;
+  }
+}
+
+#adminmenu .wp-submenu, #adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu .wp-has-current-submenu.opensub .wp-submenu, .folded #adminmenu .wp-has-current-submenu .wp-submenu, #adminmenu a.wp-has-current-submenu:focus+.wp-submenu {
+  display: none;
+  
+  li {
+    padding: 0 24px;
+  }
+}
+
+// Separador
+#adminmenu li.wp-menu-separator {
+//  height: 0;
+//  border-top: 1px solid #dadada;
+//  border-bottom: 1px solid #f6f6f6;
+//  margin: 12px 0;
+//  
+  // Hide
+  display: none !important;
+}
+
+// Cor do hover do bloco todo
+#adminmenu a:hover, #adminmenu li.menu-top:hover, #adminmenu li.opensub>a.menu-top, #adminmenu li>a.menu-top:focus {
+  background-color: transparent !important;
+}
+
+// Hover e active menu
+#adminmenu li.current a.menu-top, #adminmenu li.wp-has-current-submenu a.wp-has-current-submenu, #adminmenu li.wp-has-current-submenu .wp-submenu .wp-submenu-head, .folded #adminmenu li.current.menu-top {
+  background: #f9f9f9 !important;
+  font-weight: bold;
+}
+
+// Hide CSS arrow
+ul#adminmenu a.wp-has-current-submenu:after, ul#adminmenu>li.current>a.current:after {
+  display: none !important;
+  background-color: transparent !important;
+}
+
+// - - - - - - - - - - - - - - 
+// Fim de Adaptações PSD
+// - - - - - - - - - - - - - -  
+
+/**
+ * Adaptations to work with sidenav
+ */
+
+.folded #adminmenu, 
+.folded #adminmenu li.menu-top, 
+.folded #adminmenuback, 
+.folded #adminmenuwrap {
+  //left: -36px;
+}
+
+#adminmenuback {
+  display: none;
+}
+
+#adminmenuwrap {
+  height: 100%;
+  width: 0;
+  background: transparent;
+  z-index: 10;
+}
+
+#adminmenu {
+  height: 100%;
+  margin: 0;
+  background: transparent;
+}
+
+// Only on big displays
+@media screen and (min-width: 784px) {
+
+#wpcontent,
+#wpfooter,
+.jetpack-pagestyles #wpcontent {
+ margin-left: $sidemenu-width;
+}
+
+.jetpack-pagestyles #wpcontent * {
+  //.box-sizing(content-box) !important;
+}
+
+#adminmenuback,
+#adminmenuwrap, 
+#adminmenu, 
+#adminmenu .wp-submenu {
+  width: $sidemenu-width;
+  height: auto;
+  padding-left: 0;
+  padding-right: 0;
+  
+  position: absolute;
+}
+
+#adminmenu .wp-submenu {
+  left: $sidemenu-width;
+}
+
+// Theme Overlay
+.theme-overlay .theme-wrap {
+  top: 100px;
+  left: $sidemenu-width + 30px;
+}
+  
+#wpcontent, #wpfooter {
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+  
+#adminmenuwrap {
+  margin-top: $parallax-height;
+  padding-top: 0;
+}
+
+} // End Media Queries
+
+// Badges
+#adminmenu .awaiting-mod, #adminmenu .update-plugins {
+  @extend .new, .badge;
+  min-width: 0 !important;
+  
+  &:after {
+    display: none;
+  }
+}
+
+#adminmenu {
+  // Paseudo
+  &:before {
+    height: 48px;
+    line-height: 48px;
+    content: "Main Menu";
+    padding: 0 36px;
+    margin-top: 12px;
+    display: block;
+    
+    @extend .grey-text, .text-lighten-4;
+  }
+}
+
+#adminmenu a {
+  @extend .grey-text, .text-darken-4;
+}
+
+// Icon Color
+#adminmenu div.wp-menu-image:before {
+  @extend .grey-text, .text-darken-4;
+}
+
+#adminmenu a {
+  @extend .grey-text, .text-darken-4;
+}

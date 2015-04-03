@@ -1,0 +1,43 @@
+@charset "UTF-8";
+
+// Some of our important variables
+$sidemenu-width:  320px;
+$adminbar-height:  55px;
+
+// WordPress Base The Colors
+$base-color:         #363b3f;
+$highlight-color:    #e14d43;
+$notification-color: #69a8bb;
+
+// Card Dark Areas
+$card-dark: #f6f6f6;
+$card-border: #e5e5e5;
+
+// Parallax
+$parallax-height: 300px;
+
+// Load Materialize
+@import "materialize";
+
+// Load WordPress Base Theme 
+@import "common/theme";
+
+// if Material FUN
+body.material-admin {
+  
+  // Load Font Awesome
+  @import 'font-awesome/font-awesome';
+
+  // Load Admin Menu
+  @import 'material-admin/admin-menu'; 
+
+  // Load Admin bar
+  @import 'material-admin/admin-bar';
+
+  // Load Custom Blocks
+  @import 'material-admin/custom';
+
+  // Load Content personalizations
+  @import 'material-admin/content'; 
+  
+}

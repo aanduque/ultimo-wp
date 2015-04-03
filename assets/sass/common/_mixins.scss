@@ -1,0 +1,49 @@
+/*
+ * Button mixin- creates 3d-ish button effect with correct
+ * highlights/shadows, based on a base color.
+ */
+
+@mixin button($button-color, $text-color: white) {
+  
+  @extend .btn;
+  
+  &:hover, &:focus {
+    
+  }
+  
+  &:focus {
+
+  }
+  
+  &:active {
+
+  }
+
+  &[disabled],
+  &:disabled,
+  &.button-primary-disabled,
+  &.disabled {
+    @extend .disabled;
+  }
+}
+
+/*
+ * Mixin to make blocks fit onto card 
+ */
+
+.fit-box {
+  padding: 24px;
+  margin: -24px -24px 24px -24px !important;
+  // background: #fff;
+  border: none;
+  border-bottom: solid 1px $card-border;
+  @include box-shadow(none);
+}
+
+/*
+ * Mixin reset box from shadows and border
+ */
+.reset-box {
+  border: none;
+  @include box-shadow(none);
+}

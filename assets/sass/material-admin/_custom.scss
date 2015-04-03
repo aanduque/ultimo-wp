@@ -1,0 +1,54 @@
+// Parallax Block
+#parallax-main-block {
+  position: relative;
+  height: $parallax-height;
+  margin-bottom: -140px;
+  
+  .parallax {
+    
+    > img {
+      opacity: 0.8;
+    }
+  }
+  
+  -webkit-box-shadow: inset 0px -25px 45px -4px rgba(50, 50, 50, 0.21);
+  -moz-box-shadow:    inset 0px -25px 45px -4px rgba(50, 50, 50, 0.21);
+  box-shadow:         inset 0px -25px 45px -4px rgba(50, 50, 50, 0.21);
+  
+  #mwp-user-card {
+    position: absolute;
+    width: auto;
+    padding: 0;
+    bottom: 24px;
+    z-index: 999;
+    padding: 0 36px;
+    
+    .user-card-avatar {
+      margin-bottom: 12px;
+      
+      img { 
+        display: block !important;
+        border-radius: 30px;
+      }
+    }
+    
+    .user-card-info {
+      @extend .white-text, .text-darken-1;
+    }
+    
+    .user-card-info .user-card-name {
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+  }
+  
+  #parallax-content .container {
+    padding: 0;
+    margin-bottom: 24px;
+  }
+  
+  #parallax-content .container h2 {
+    color: #fff;
+  }
+}

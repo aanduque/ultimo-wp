@@ -1,0 +1,97 @@
+@charset "UTF-8";
+
+// Some of our important variables
+$sidemenu-width:  320px;
+$adminbar-height:  55px;
+
+// WordPress Base The Colors
+$base-color:         #363b3f;
+$highlight-color:    #e14d43;
+$notification-color: #69a8bb;
+
+// Card Dark Areas
+$card-dark: #f6f6f6;
+$card-border: #e5e5e5;
+
+// Parallax
+$parallax-height: 300px;
+
+// Mixins
+@import "materialize/prefixer";
+@import "materialize/mixins";
+@import "materialize/color";
+
+// Variables;
+@import "materialize/variables";
+
+// Reset
+@import "materialize/normalize";
+
+// materialize
+@import "materialize/global";
+@import "materialize/icons-material-design";
+@import "materialize/roboto";
+@import "materialize/typography";
+@import "materialize/cards";
+@import "materialize/tooltip";
+@import "materialize/buttons";
+@import "materialize/waves";
+@import "materialize/modal";
+@import "materialize/form";
+
+body {
+  background-color: #222;
+}
+
+h1 {
+  display: none;
+}
+
+// Cardfy Login form block
+#loginform,
+.message {
+  @extend .card-panel;
+}
+
+#loginform label {
+  left: 0 !important;
+}
+
+#loginform input[type='text'],
+#loginform input[type='password'] {
+  background-color: transparent !important;
+  padding: 0;
+}
+
+#loginform .remember-me-block {
+  margin-top: 24px;
+}
+
+#loginform .submit {
+  display: block;
+  margin-top: 24px !important;
+}
+
+#loginform .submit input {
+  @extend .btn;
+  width: 100%;
+  margin-bottom: 0;
+}
+
+// Hide Back to Blog link 
+#backtoblog {display: none;}
+
+// Nav
+#nav {
+  padding: 0 !important;
+  margin: 0 !important;
+  
+  a {
+    width: 100%;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-size: 80%;
+    margin: 12px 0 0 0;
+  }
+}
