@@ -1,12 +1,12 @@
 {
-  "fullName": "Material WP",
-  "name": "material-wp",
-  "description": "Bring Material Design to your WordPress Dashboard.",
+  "fullName": "Ultimo WP",
+  "name": "ultimo-wp",
+  "description": "The absolute dashboard theme",
   "version": "0.0.1",
   "author": "*732 <aanduque@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aanduque/material-wp.git"
+    "url": "https://github.com/aanduque/ultimo-wp.git"
   },
   "engines": {
     "node": ">= 0.10.0"

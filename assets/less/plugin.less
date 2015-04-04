@@ -1,0 +1,107 @@
+// Chenge to the respective slug
+.plugin-page-732.plugin-indigo-732 {
+
+    // Define Main Color
+    @main-color: #34495e;
+    @text-color: #fff;
+
+    // Load Mixins
+    //@import "mixins.less";
+    // Load Font Awesome
+    // @import "font-awesome/font-awesome.less";
+
+    // Redux Header hide
+    .plugins-732-redux {
+        #redux-header {
+            display: none;
+        }
+    }
+
+    // The ideia is that you dont have to change anything on the header and footer, and about less
+
+    // Header
+    @import "plugin/header.less";
+    // Footer
+    @import "plugin/footer.less";
+    // About
+    @import "plugin/about.less";
+
+    // TODO: adicionar isso só para nossos plugins
+    a {
+        outline: none !important;
+        .transition(all 200ms linear);
+        &:hover {text-decoration: none !important;}
+        &:active, &:visited, &:hover {outline: none !important;}
+    }
+
+    // Personalizing handlers
+    .widget-top .widget-title {
+
+        .wp-admin-menu-title {
+            padding-left: 42px;
+        }
+
+        span.dashicons {
+            background-color: #fff; //rgba(30, 140, 190, .7);
+            //color: #fff;
+            display: inline-block;
+
+            border-right: solid 1px #ddd;
+
+            height: 43px !important;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            line-height: 43px;
+            width: 42px;
+            font-size: 1.5em;
+        }
+
+        .update-plugins, .pending-count {
+            display: none;
+        }
+    }
+
+    #amm_metabox {
+
+        .widget-inside {
+            padding-top: 0 !important;
+        }
+
+        .widget-content label:not(:last-child) {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .wpamm-title {
+            text-transform: uppercase;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .widget-control-actions {
+            margin: -15px !important;
+            margin-top: 30px !important;
+            margin-bottom: -33px !important;
+        }
+
+        .alignleft {float: none;}
+
+        // Personalizing Close Handle
+        .wpamm-close,
+        .wpamm-button {
+            text-transform: uppercase;
+            font-weight: bold;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+            background-color: #f9f9f9;
+            line-height: 40px;
+        }
+
+        .wpamm-button {
+            border: solid 1px #ddd;
+        }
+    }
+
+}

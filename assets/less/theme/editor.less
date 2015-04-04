@@ -1,0 +1,56 @@
+// Permalink box
+#edit-slug-box {
+	background-color: @base-white-hover;
+	padding: 0 15px !important;
+	border: none;
+	font-weight: 500;
+	line-height: 50px !important;
+
+	margin: 0;
+
+	#editable-post-name {
+		line-height: initial;
+	}
+
+	input, button, .button {
+		line-height: inherit !important;
+		display: inline !important;
+	}
+
+	// Permalink title
+	> strong {
+		font-weight: 600;
+		text-transform: uppercase;
+		font-size: 12px;
+	}
+
+	#sample-permalink {
+		font-weight: 400;
+	}
+}
+
+// Hide Publish hndle
+#submitdiv .hndle,
+#submitdiv .handlediv {
+	display: none;
+}
+
+#major-publishing-actions {
+	border: none;
+}
+
+// Delete Button
+#delete-action {
+	a:before {
+		margin-right: 6px;
+		font-family: FontAwesome;
+		content: '\f1f8';
+	}
+}
+
+// Publish status items: Visibility, Status, Date, etc
+#misc-publishing-actions {
+	.misc-pub-section {
+		margin: 0;
+	}
+}

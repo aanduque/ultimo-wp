@@ -7,7 +7,7 @@
 
       rewrite: {
         version: {
-          src: '../material-admin.php',
+          src: '../ultimo-wp.php',
           editor: function(contents, filePath) {
             var version = grunt.config.get('pkg.version');
             contents = contents.replace(/Version:(.)*/g, 'Version: ' + version);
@@ -61,7 +61,7 @@
         ]
       },
 
-      sass: {
+      less: {
         dist: {
           
           options: {
@@ -73,22 +73,22 @@
             
             // Commom
             '../assets/css/common.css': [
-            '../assets/sass/common.scss'
+            '../assets/less/common.less'
             ],
             
             // Admin
             '../assets/css/admin.css': [
-            '../assets/sass/admin.scss'
+            '../assets/less/admin.less'
             ],
             
             // Frontend
             '../assets/css/frontend.css': [
-            '../assets/sass/frontend.scss'
+            '../assets/less/frontend.less'
             ],
             
             // Login
             '../assets/css/login.css': [
-            '../assets/sass/login.scss'
+            '../assets/less/login.less'
             ],
             
             
@@ -121,7 +121,18 @@
             
             // Commom
             '../assets/js/common.min.js': [
-            '../assets/js/materialize/*.js',
+            '../assets/js/plugins/bootstrap/transition.js',
+            '../assets/js/plugins/bootstrap/alert.js',
+            '../assets/js/plugins/bootstrap/button.js',
+            '../assets/js/plugins/bootstrap/carousel.js',
+            '../assets/js/plugins/bootstrap/collapse.js',
+            '../assets/js/plugins/bootstrap/dropdown.js',
+            '../assets/js/plugins/bootstrap/modal.js',
+            '../assets/js/plugins/bootstrap/tooltip.js',
+            '../assets/js/plugins/bootstrap/popover.js',
+            '../assets/js/plugins/bootstrap/scrollspy.js',
+            '../assets/js/plugins/bootstrap/tab.js',
+            '../assets/js/plugins/bootstrap/affix.js',
             '../assets/js/plugins/*.js',
             '../assets/js/scripts/_common.js'
             ],
@@ -153,11 +164,11 @@
 
       version: {
         options: {
-          file: '../material-admin.php',
+          file: '../ultimo-wp.php',
           css: '../assets/css/common.min.css',
-          cssHandle: 'material-admin',
+          cssHandle: 'ultimo-wp',
           js: '../assets/js/scripts.min.js',
-          jsHandle: 'material-admin'
+          jsHandle: 'ultimo-wp'
         }
       },
 
@@ -175,7 +186,7 @@
           '!.idea/**',
           '!.scss-cache/**',
           '!assets/less/**',
-          '!assets/sass/**',
+          '!assets/less/**',
           '!assets/js/plugins/**',
           '!assets/js/_*.js',
           '!assets/js/scripts/**.js',
@@ -203,12 +214,12 @@
       },
 
       watch: {
-        sass: {
+        less: {
           files: [
-          '../assets/sass/*.scss',
-          '../assets/sass/**/*.scss',
+          '../assets/less/*.less',
+          '../assets/less/**/*.less',
           ],
-          tasks: ['sass', 'cssmin'],
+          tasks: ['less', 'cssmin'],
           options: {
             livereload: true,
           },
@@ -245,7 +256,7 @@
       grunt.loadNpmTasks('grunt-contrib-uglify');
       grunt.loadNpmTasks('grunt-contrib-cssmin');
       grunt.loadNpmTasks('grunt-contrib-watch');
-      grunt.loadNpmTasks('grunt-contrib-sass');
+      grunt.loadNpmTasks('grunt-contrib-less');
       grunt.loadNpmTasks('grunt-wp-version');
       grunt.loadNpmTasks('grunt-contrib-copy');
       grunt.loadNpmTasks('grunt-contrib-compress');
@@ -256,7 +267,7 @@
 
       // Register tasks
       grunt.registerTask('default', [
-        'sass',
+        'less',
         'cssmin',
         'uglify',
         //'version'

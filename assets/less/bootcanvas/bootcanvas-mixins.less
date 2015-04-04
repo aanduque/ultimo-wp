@@ -1,0 +1,37 @@
+/*
+ * make-box
+ * - Apply caracteristic box-shadow and background color on bars and navboxes
+ */
+
+.make-box (@color: @base-white) {
+ 	.reset-box;
+ 	background-color: @color;
+ 	.box-shadow(@box-shadow);
+}
+
+.make-box-no-bg () {
+    .reset-box;
+    .box-shadow(@box-shadow);
+}
+
+/*
+ * make-horizontal-bar
+ * - Apply caracteristic box-shadow and background color on bars and navboxes
+ */
+
+.make-horizontal-bar {
+ 	.make-box;
+ 	padding-left: 15px;
+ 	padding-right: 15px;
+ 	line-height: 60px;
+ }
+
+/*
+ * link-color
+ * - Chance a link color and its hover color
+ */
+
+ .link-color(@color, @hover-color) {
+ 	color: @color;
+ 	&:hover {color: @hover-color;}
+ }

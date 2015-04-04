@@ -1,0 +1,37 @@
+/**
+ *
+ * Custom less code
+ *
+ */
+
+html {padding-top: @topbar-height !important;}
+a {text-decoration: none !important;}
+
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+
+// Fa Ajustments
+.fa:not(.fa-no-margin), 
+[class^='ion-']:not(.fa-no-margin) {
+   margin-right: 6px;
+}
+
+// Sidebar and Stage
+@import "theme/sidebar.less";
+
+// Sidebar and Stage
+@import "theme/wpadminbar-default.less";
+
+// WP Admin Bar
+@import "theme/wpadminbar.less";
+
+// Content
+@import "theme/content.less";
+
+// Reseting wordpress elements with our own. ex. buttons etc
+@import "theme/overwrite.less";
+
+// Footer
+@import "theme/footer.less";

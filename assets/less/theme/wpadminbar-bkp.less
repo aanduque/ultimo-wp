@@ -1,0 +1,80 @@
+#wpadminbar {
+  z-index: 9999 !important;
+  height: 100px;
+
+  // Apply make-box to it
+  .make-box;
+
+  .quicklinks {
+    > ul, 
+    > ul > li,
+    > ul > li > a {
+      display: inline-block;
+      height: 100px;
+      line-height: 100px;
+    }
+
+    .ab-item {
+      // text-transform: uppercase !important;
+      // font-size: 80%;
+      color: #444 !important;
+    }
+
+    .ab-item::before,
+    .ab-icon {
+      line-height: 100px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+    }
+  }
+
+  // Logo
+  .custom-site-logo {
+
+    float: left;
+    width: @sidebarWidth;
+    float: left;
+
+    height: 100px;
+
+    color: @text-white;
+    text-align: center;    
+    line-height: 100px;
+
+    background-color: @brand-primary;
+
+    img {
+      width: auto;
+      height: 80px;
+    }
+
+  }
+
+  // User card
+  #wp-admin-bar-my-account > .ab-item {
+    height: 100px;
+    padding: 0 30px;
+
+    font-size: @font-size-small;
+    text-transform: uppercase;
+    text-decoration: none;
+
+    background-color: rgba(0,0,0,.01);
+
+    > img {
+      height: 40px !important;
+      width: 40px !important;
+      border: none !important;
+      margin-left: 15px !important;
+      background-color: transparent !important;
+
+      //.pull-right;
+      border-radius: 20px;
+    }
+  }
+
+  // Removing second avatar picture
+  #wp-admin-bar-user-info img {display: none;}
+ 
+}
+

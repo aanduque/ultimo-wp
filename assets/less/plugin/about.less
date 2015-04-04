@@ -1,0 +1,101 @@
+#wpcontent {
+  overflow: hidden;
+}
+
+#about-732 {
+  
+  .feature-block-732 {
+    max-width: 720px;
+    margin: 100px auto;
+    overflow: hidden;
+    //.clearfix;
+  }
+
+  .feature-block-text-732 {
+    //text-align: center;
+    width: 480px;
+    margin-right: 20px;
+    float: left;
+    position: relative;
+
+    h2 {
+      font-size: 24pt;
+      line-height: 1.5em;
+    }
+  }
+
+  .feature-block-image-732 {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: solid 10px #fff;
+    float: right;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    text-align: center;
+    line-height: 200px;
+    background-color: #ddd;
+
+    img {
+      max-width: 100%;
+      vertical-align: middle;
+    }
+
+    i {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      font-size: 30pt;
+      top: 0;
+      left: 0;
+      background-color: rgba(0,0,0,.6);
+      color: #fff;
+      line-height: 200px;
+      text-align: center;
+      display: inline-block;
+      opacity: 0;
+      //.transition(all 200ms linear);
+    }
+
+    &:hover {
+      i {
+        opacity: 1;
+      }
+    }
+  }
+
+  // Alternate the floats
+  .feature-block-732:nth-child(even) .feature-block-text-732 {
+    float: right;
+    margin-right: 0;
+    margin-left: 20px;
+    text-align: right;
+  }
+
+  .feature-block-732:nth-child(even) .feature-block-image-732 {
+    float: left;
+  }
+
+  // CTA
+  .about-cta-732 {
+    background-color: #fff;
+    padding: 120px 0;
+    margin-left: -20px;
+    margin-right: -20px;
+    text-align: center;
+
+    //border-top: solid 1px #ccc;
+    //border-bottom: solid 1px #ccc;
+
+    p {
+      font-size: 20pt;
+      line-height: 1.5em;
+      max-width: 700px;
+      margin-left: auto;
+      color: #444;
+      margin-right: auto;
+    }
+  }
+
+}

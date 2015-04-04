@@ -1,0 +1,501 @@
+/**
+ *
+ *
+ * Fonts
+ *
+ */
+
+ // @import url(http://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,400italic|Open+Sans:400italic,400,300,600,700,800);
+
+/**
+ *
+ * Color Variables
+ *
+ */
+
+ @brand-primary:         #3498db; // Alizarin
+ @brand-success:         #2ecc71; // Emerald
+ @brand-info:            #3498db; // Peter River
+ @brand-warning:         #f1c40f; // Sun Flower
+ @brand-danger:          lighten(@brand-primary, 10%); // Pumpkin
+
+ @brand-primary-hover:   #2980b9; // Pomegrade
+ @brand-success-hover:   #27ae60; // Nephriti
+ @brand-info-hover:      #2980b9; // Belize Hover
+ @brand-warning-hover:   #f39c12; // Orange
+ @brand-danger-hover:    darken(@brand-danger, 5%); // Darker Pumpkin
+
+ @body-bg:               #F2F2F2;
+
+ /* Whitescale */
+ @base-white:            #fdfdfd; // Used on bars
+ @base-white-hover:      #f8f8f8; // Used on pannel footers, like cards
+ @text-white:            #f9f9f9; // Used as base text color
+ @text-white-hover:      #f3f3f3; // Used as white text hover
+
+ /* Blackscale */
+ @base-black:            #333333; // Used as Background Color on sidebar
+ @text-black:            @base-black;
+ @text-black-hover:      #111111;
+
+ /* Important Details */
+ @box-shadow:            2px 4px 5px 0px rgba(0, 0, 0, 0.02); // Used on bars and cards
+ @box-shadow-hover:      2px 4px 5px 0px rgba(0, 0, 0, 0.1); // Used on bars and cards
+ @border-radius-base:    0;
+ @transition:            all 300ms linear;
+
+ @font-size-smallest:       ceil((@font-size-base * 0.71)); // ~10px
+
+ /* 
+  *
+  * Reset Imortant Variables 
+  *
+  */
+
+ /* Typograhy */
+ @font-family-sans-serif:  "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+ @font-family-serif:       Georgia, "Times New Roman", Times, serif;
+ @font-family-base:        @font-family-sans-serif;
+
+/* Paddings */
+ @padding-base-vertical:     6px;
+ @padding-base-horizontal:   12px;
+
+ @padding-large-vertical:    10px;
+ @padding-large-horizontal:  15px;
+
+ @padding-small-vertical:    5px;
+ @padding-small-horizontal:  10px;
+
+ @padding-xs-vertical:       1px;
+ @padding-xs-horizontal:     5px;
+
+ @line-height-large:         2;
+ @line-height-small:         1.5;
+
+ @border-radius-base:        0px;
+ @border-radius-large:       0px;
+ @border-radius-small:       0px;
+
+ //** Global color for active items (e.g., navs or dropdowns).
+ @component-active-color:    #fff;
+
+
+
+/* Important Mixins: used to remove border and border-radius */
+.reset-box {
+  border-radius: 0;
+  border: none;
+}
+
+// /**
+//  *
+//  * Body
+//  *
+//  */
+
+// p {
+//  font-family: "Open Sans", "Ubuntu", sans-serif;
+// }
+
+// a:hover {
+//  text-decoration: none;
+//  .transition(all 200ms linear);
+// }
+
+// // Common styles
+// .btn-default,
+// .btn-primary,
+// .btn-success,
+// .btn-info,
+// .btn-warning,
+// .btn-danger {
+
+//   // Reset the shadow
+//   &:active,
+//   &.active {
+//   }
+// }
+
+// // Mixin for generating new styles
+// .btn-styles(@btn-color: none, @border-color: @btn-color) {
+//   font-weight: 300;
+//   //text-transform: uppercase;
+//   //font-size: 12px;
+//   border-width: 0 0 4px 0;
+//   //padding-bottom: 15px !important;
+//   border-color: @border-color;
+//   border-radius: 0;
+//   text-decoration: none !important;
+//   outline: 0 !important;
+
+//   .transition(@transition);
+
+//   &:hover,
+//   &:focus  {
+//     background-color: darken(@btn-color, 12%);
+//   }
+
+//   &:active,
+//   &.active {
+//     background-color: darken(@btn-color, 12%);
+//     border-color: darken(@border-color, 14%);
+//   }
+
+//   &:disabled,
+//   &[disabled] {
+//     background-color: darken(@btn-color, 12%);
+//   }
+// }
+
+// // Common styles
+// .btn {
+//   // Remove the gradient for the pressed/active state
+//   &:active,
+//   &.active {
+//   }
+// }
+
+// // Apply the mixin to the buttons
+// .btn-default { .btn-styles(@btn-default-bg); text-shadow: 0 1px 0 #fff; border-color: #ccc; }
+// .btn-primary { .btn-styles(@btn-primary-bg, @brand-primary-hover); }
+// .btn-success { .btn-styles(@btn-success-bg, @brand-success-hover); }
+// .btn-info    { .btn-styles(@btn-info-bg, @brand-info-hover); }
+// .btn-warning { .btn-styles(@btn-warning-bg, @brand-warning-hover); }
+// .btn-danger  { .btn-styles(@btn-danger-bg, @brand-danger-hover); }
+// .btn-link    { 
+//   .btn-styles(transparent, transparent);
+//   .link-color(@text-black, @text-black-hover);
+//   font-weight: 300;
+//   font-size: @font-size-smallest;
+
+//   border: none;
+//   outline: none;
+// }
+
+
+
+// //
+// // Images
+// // --------------------------------------------------
+
+// .thumbnail {
+//   background-color: @base-white;
+//   .box-shadow(@box-shadow);
+// }
+
+
+// //
+// // Pagination
+// // --------------------------------------------------
+
+// .pagination {
+//   .reset-box;
+
+//   a {text-transform: uppercase}
+//   li.active,
+//   li:active {
+//     font-weight: 700;
+//   }
+// }
+
+// //
+// // Forms
+// // --------------------------------------------------
+
+// .form-control {
+//   box-shadow: none;
+//   .reset-box;
+// }
+
+// .form-group {
+//   label {
+//     font-weight: 700;
+//     text-transform: uppercase;
+//     font-size: 90%; 
+//   }
+// }
+
+// .input-group {  
+//   .box-shadow(@box-shadow);
+// }
+
+// .input-group-addon {
+//   font-weight: 700;
+//   background-color: @base-white-hover;
+//   .reset-box;
+// }
+
+// // Google Chrome input autocomplete background workaround ;)
+// input:-webkit-autofill {
+//     -webkit-box-shadow: 0 0 0px 1000px @base-white inset;
+// }
+
+
+// //
+// // Dropdowns
+// // --------------------------------------------------
+
+// .dropdown-menu {
+//   .reset-box;
+//   .box-shadow(@box-shadow);
+// }
+
+// .dropdown-menu > li > a:hover,
+// .dropdown-menu > li > a:focus {
+//   background-color: @base-white-hover;
+// }
+
+// .dropdown-header {
+//   font-weight: 700;
+//   text-transform: uppercase;
+// }
+
+// .dropdown-menu > .active > a,
+// .dropdown-menu > .active > a:hover,
+// .dropdown-menu > .active > a:focus {
+//   #gradient > .vertical(@start-color: @dropdown-link-active-bg; @end-color: darken(@dropdown-link-active-bg, 5%));
+//   background-color: darken(@dropdown-link-active-bg, 5%);
+// }
+
+
+
+// //
+// // Navbar
+// // --------------------------------------------------
+
+// // Default navbar
+// .navbar-default {
+//   background-color: @base-white;
+//   border-radius: @navbar-border-radius;
+//   @shadow: inset 0 1px 0 rgba(255,255,255,.15);
+//   .reset-box;
+//   .box-shadow(@shadow @box-shadow);
+
+//   .navbar-nav > .active > a {
+//     #gradient > .vertical(@start-color: darken(@navbar-default-bg, 5%); @end-color: darken(@navbar-default-bg, 2%));
+//     .box-shadow(inset 0 3px 9px rgba(0,0,0,.075));
+//   }
+// }
+// .navbar-brand,
+// .navbar-nav > li > a {
+//   text-shadow: 0 1px 0 rgba(255,255,255,.25);
+// }
+
+// // Inverted navbar
+// .navbar-inverse {
+//   #gradient > .vertical(@start-color: lighten(@navbar-inverse-bg, 10%); @end-color: @navbar-inverse-bg);
+//   .reset-filter(); // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered
+
+//   .navbar-nav > .active > a {
+//     #gradient > .vertical(@start-color: @navbar-inverse-bg; @end-color: lighten(@navbar-inverse-bg, 2.5%));
+//     .box-shadow(inset 0 3px 9px rgba(0,0,0,.25));
+//   }
+
+//   .navbar-brand,
+//   .navbar-nav > li > a {
+//     text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+//   }
+// }
+
+// // Undo rounded corners in static and fixed navbars
+// .navbar-static-top,
+// .navbar-fixed-top,
+// .navbar-fixed-bottom {
+//   border-radius: 0;
+// }
+
+
+
+// //
+// // Alerts
+// // --------------------------------------------------
+
+// // Common styles
+// .alert {
+//   text-shadow: 0 1px 0 rgba(0,0,0,.2);
+//   //@shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 2px rgba(0,0,0,.05);
+//   //.box-shadow(@shadow);
+// }
+
+// // Mixin for generating new styles
+// .alert-styles(@color) {
+//   padding-left: 30px;
+//   padding-right: 15px;
+
+//   color: @text-white;
+//   font-weight: 600;
+
+//   background-color: lighten(@color, 7%);
+//   border-radius: 0;
+//   border: 0;
+
+//   &.flash-notification {
+//     margin: -30px -31px 30px -30px;
+//     z-index: 1000;
+//   }
+
+//   .box-shadow(@box-shadow);
+// }
+
+// // Apply the mixin to the alerts
+// .alert-success    { .alert-styles(@brand-success); }
+// .alert-info       { .alert-styles(@brand-info); }
+// .alert-warning    { .alert-styles(@brand-warning); }
+// .alert-danger     { .alert-styles(@brand-danger); }
+
+// //
+// // Page Header
+// // --------------------------------------------------
+// .page-header {
+//   margin-top: 45px;
+  
+//   border-bottom: none;
+  
+//   h3 {
+//     font-size: @font-size-base;
+//     font-weight: 700;
+//     text-transform: uppercase;
+//   }
+
+//   &:first-child {
+//     margin-top: 0;
+//     h2 {margin-top: 0;}
+//   }
+// }
+
+
+// //
+// // Progress bars
+// // --------------------------------------------------
+
+// // Give the progress background some depth
+// .progress {
+//   background-color: @progress-bg;
+//   .reset-box;
+// }
+
+// // Mixin for generating new styles
+// .progress-bar-styles(@color) {
+//   #gradient > .vertical(@start-color: @color; @end-color: darken(@color, 5%));
+//   border-radius: 0;
+// }
+
+// // Apply the mixin to the progress bars
+// .progress-bar            { .progress-bar-styles(@progress-bar-bg); }
+// .progress-bar-success    { .progress-bar-styles(@progress-bar-success-bg); }
+// .progress-bar-info       { .progress-bar-styles(@progress-bar-info-bg); }
+// .progress-bar-warning    { .progress-bar-styles(@progress-bar-warning-bg); }
+// .progress-bar-danger     { .progress-bar-styles(@progress-bar-danger-bg); }
+
+// // Reset the striped class because our mixins don't do multiple gradients and
+// // the above custom styles override the new `.progress-bar-striped` in v3.2.0.
+// .progress-bar-striped {
+//   #gradient > .striped();
+// }
+
+
+// //
+// // List groups
+// // --------------------------------------------------
+
+// .list-group {
+//   border-radius: @border-radius-base;
+//   .box-shadow(@box-shadow);
+// }
+
+// .list-group-item {
+//   border-color: darken(@base-white-hover, 5%);
+//   background-color: @base-white;
+//   .transition(@transition);
+
+//   &:hover {
+//     background-color: @base-white-hover;
+//   }
+// }
+
+// .list-group-item-heading {
+//   text-transform: uppercase;
+//   font-size: 90%;
+//   font-weight: 700;
+// }
+
+// .list-group-item.active,
+// .list-group-item.active:hover,
+// .list-group-item.active:focus {
+//   background-color: @list-group-active-bg;
+//   border-color: darken(@list-group-active-border, 7.5%);
+// }
+
+// //
+// // Modals
+// // --------------------------------------------------
+
+// // Common styles
+// .modal {
+
+//   .modal-header {
+//     border: none;
+
+//     .modal-title {
+//       font-weight: 700;
+//       font-size: @font-size-base !important;
+//       text-transform: uppercase;
+//     }
+//   }
+//   .modal-body {margin-bottom: 15px;}
+//   .modal-content {
+//     background-color: @base-white;
+//     .box-shadow(@box-shadow);
+//     .reset-box;
+//   }
+
+//   .modal-footer {
+//     background-color: @base-white-hover;
+//     border: none;
+//   }
+// }
+
+// //
+// // Panels
+// // --------------------------------------------------
+
+// // Common styles
+// .panel {
+//   background-color: @base-white;
+//   .box-shadow(@box-shadow);
+//   .reset-box;
+
+//   > .panel-footer {
+//     background-color: @base-white-hover;
+//     border: none;
+//   }
+// }
+
+// // Mixin for generating new styles
+// .panel-heading-styles(@color) {
+//   font-weight: 700;
+//   text-transform: uppercase;
+//   background-color: @color;
+//   .reset-box;
+// }
+
+// // Apply the mixin to the panel headings only
+// .panel-default > .panel-heading   { .panel-heading-styles(@panel-default-heading-bg); }
+// .panel-primary > .panel-heading   { .panel-heading-styles(@panel-primary-heading-bg); }
+// .panel-success > .panel-heading   { .panel-heading-styles(@panel-success-heading-bg); }
+// .panel-info > .panel-heading      { .panel-heading-styles(@panel-info-heading-bg); }
+// .panel-warning > .panel-heading   { .panel-heading-styles(@panel-warning-heading-bg); }
+// .panel-danger > .panel-heading    { .panel-heading-styles(@panel-danger-heading-bg); }
+
+
+
+// //
+// // Wells
+// // --------------------------------------------------
+
+// .well {
+//   background-color: @base-white;
+//   .box-shadow(@box-shadow);
+//   .reset-box;
+// }

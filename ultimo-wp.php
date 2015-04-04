@@ -1,9 +1,9 @@
 <?php
 
 /*
-  Plugin Name: Material Admin
+  Plugin Name: Ultimo WP
   Plugin URI: http://codecanyon.net/item/wp-admin-menu-manager/9520160
-  Description: Bring Material Design to you WordPress Dashboard
+  Description: The absolute WP Dashboard Theme.
   Version: 0.0.1
  */
 
@@ -13,12 +13,23 @@
 require 'paradox/paradox-plugin.php';
 
 /**
+ * Loads Redux Framework
+ */
+require 'inc/redux-framework/redux-framework.php';
+// Loads the Plugin
+require 'admin/admin.php';
+// Loads the Plugin
+require 'inc/wp-admin-menu-manager/wp-admin-menu-manager.php';
+// WhiteLabel WPAMM
+add_filter('wpamm/settings/whitelabel', '__return_true');
+
+/**
  * Our plugin starts here
  *
- * MaterialAdmin is a WordPress plugin that completly transforms your WordPress admin interface, giving it a 
+ * UltimoWP is a WordPress plugin that completly transforms your WordPress admin interface, giving it a 
  * awesome and beautful Google Material Design interface.
  */
-class materialAdmin extends ParadoxPlugin {
+class UltimoWP extends ParadoxPlugin {
   
   /**
    * Creates or returns an instance of this class.
@@ -36,8 +47,8 @@ class materialAdmin extends ParadoxPlugin {
   public function __construct() {
     
     // Setup
-    $this->id         = 'material-admin';
-    $this->textDomain = 'material-admin';
+    $this->id         = 'ultimo-wp';
+    $this->textDomain = 'ultimo-wp';
     $this->file       = __FILE__;
     
     // Set Debug Temporarily to True
@@ -47,17 +58,10 @@ class materialAdmin extends ParadoxPlugin {
     parent::__construct();
     
     // Now we call the Advanced Custom Posts Plugin, that will handle our Options Page
-    $this->addACF();
+    // $this->addACF(); // Since we wont use it, there's no point in adding it.
     
   }
   
-  /**
-   * Loads our ACF custom fields
-   */
-  public function acfAddFields() {
-    require $this->path('inc/advanced-custom-fields-font-awesome/acf-font-awesome-v5.php');
-  }
-
   /**
    * Enqueue and register Admin JavaScript files here.
    */
@@ -72,6 +76,7 @@ class materialAdmin extends ParadoxPlugin {
    */
   public function enqueueAdminStyles() {
     // Common and Admin styles
+    wp_dequeue_style('admin-bar');
     wp_enqueue_style($this->id.'common', $this->url('assets/css/common.min.css'));
     wp_enqueue_style($this->id.'admin', $this->url('assets/css/admin.min.css'));
     
@@ -115,16 +120,7 @@ class materialAdmin extends ParadoxPlugin {
   /**
    * Here is where we create and manage our admin pages
    */
-  public function adminPages() {
-    
-    // Creating test admin page
-    acf_add_options_page(array(
-      'page_title' => __('Material Admin', $this->textDomain),
-      'icon_url'   => 'dashicons-art',
-      'position'   => '1000.63',
-    ));
-    
-  }
+  public function adminPages() {}
   
   /**
    * Place code that will be run on first activation
@@ -136,15 +132,19 @@ class materialAdmin extends ParadoxPlugin {
   /**
    * Recomplie our custom scss generated to apply new Color Scheme, based on user options
    */
-  public function runCompiler() {
+  public function runCompiler($options, $css) {
     
     // Get custom SASS
     ob_start();
-    include $this->path('inc/color-scheme.php');
-    $sass = ob_get_clean();
+    include $this->path('inc/color-scheme/color-scheme.php');
+    $scss = ob_get_clean();
+    
+    // Carries our CSS
+    $customCSS  = $this->compileSass($scss);
+    $customCSS .= $css;
     
     // Saves our new compiled CSS
-    update_option($this->id.'compiledCss', $this->compileSass($sass));
+    update_option($this->id.'compiledCss', $customCSS);
     
   }
   
@@ -157,20 +157,44 @@ class materialAdmin extends ParadoxPlugin {
   }
   
   /**
+   * Adds WPAMM, whitelabel it and change its menu to a submenu sttaus
+   */
+  public function addWPAMM() {
+      
+    // Add Filter to whitelabel WPAMM
+
+    
+  }
+  
+  
+  /**
    * Place code for your plugin's functionality here.  
    */
   public function Plugin() {
     
-    // Adds Parallax block, proper to the Fun version
-    add_action('in_admin_header', array(&$this, 'addParallaxBlock'));
-    
-    // Footer Cleanup
-    add_filter('admin_footer_text', array(&$this, 'footerClean'));
-    add_filter('update_footer', array(&$this, 'footerClean'), 11);
-    
     // adds body class to our admin pages
     add_filter('admin_body_class', array($this, 'bodyClass'));
+    
+    // Add WPAMM and whitelabel it
+    add_action('init', array($this, 'addWPAMM'));
+    
+    // Remove Tabs
+    add_action('admin_head', array($this, 'removeHelpTab'));
+    add_action('screen_options_show_screen', array($this, 'removeSOTab'), 10, 2);
+    
+    // Changes Footer Texts
+    add_filter('admin_footer_text', array($this, 'footerLeft'));
+    add_filter('update_footer', array($this, 'footerRight'), 11);
 
+    // remove WP logo from adminbar
+    add_action('wp_before_admin_bar_render', array($this, 'removeWPLogo'));
+
+    // adds our custom site logo
+    add_action('admin_bar_menu', array($this, 'customLogo'), 0);
+
+    // Remove Howdy
+    add_filter('admin_bar_menu', array($this, 'removeHowdy'), 25);
+    
   }
   
   /**
@@ -180,24 +204,105 @@ class materialAdmin extends ParadoxPlugin {
     return $classes.$this->id;
   }
   
-  /**
-   * Adds Parallax Block
+  /* 
+   * Remove howdy
+   */ 
+  function removeHowdy($wp_admin_bar) {
+	global $ultimoSettings;
+	  
+    $my_account = $wp_admin_bar->get_node('my-account');
+
+    $user = wp_get_current_user();
+    
+    // Randomly selects which greeting msg to display
+    $total = count($ultimoSettings['welcome-text']) - 1;
+    $which = rand(0, $total);
+    
+    $welcome = $ultimoSettings['welcome-text'][$which];
+
+    $newtitle = sprintf(__('%s <strong>%s</strong> %s'), $welcome, $user->display_name, get_avatar($user->ID, 40));
+    $wp_admin_bar->add_node( array(
+      'id'    => 'my-account',
+      'title' => $newtitle,
+    ));
+  }
+
+  /*
+   * Remove the WordPress Logo from the WordPress Admin Bar
    */
-  public function addParallaxBlock() {
-    // Render our view
-    $this->render('admin/parallax-block');
+  public function removeWPLogo() {
+    global $wp_admin_bar;
+    $wp_admin_bar->remove_menu('wp-logo');
+  }
+
+  public function customLogo() {
+    global $wp_admin_bar, $ultimoSettings;
+
+    // Check if title is image or text
+    $title = ($ultimoSettings['logo-type'] == 'image') ? "<img class='indigo-logo' src='". $ultimoSettings['logo-img']['url'] ."'><img class='indigo-logo-mini' src='". $ultimoSettings['logo-img-mini']['url'] ."'>" : "<span class='indigo-logo'>{$ultimoSettings['logo-text']}</span><span class='indigo-logo-mini'>". substr($ultimoSettings['logo-text'], 0 , 1) ."</span>";
+    
+    $args = array(
+        'id'    => 'my-site-logo',
+        'title' => $title,
+        'href'  => admin_url(),
+        'meta'  => array(
+		  'class' => "custom-site-logo wp-ui-notification text-{$ultimoSettings['logo-align']}",
+		)
+      );
+
+    $wp_admin_bar->add_node($args);
   }
   
   /**
-   * Clean up our footer texts
+   * Footer Left
    */
-  public function footerClean() {
-    return '';
+  public function footerLeft($text) {
+    global $ultimoSettings;
+    return (empty($ultimoSettings['footer-left-text'])) ? $text : $ultimoSettings['footer-left-text'];
   }
+
+  /**
+   * Footer Right
+   */
+  public function footerRight($text) {
+    global $ultimoSettings;
+    return (empty($ultimoSettings['footer-right-text'])) ? $text : $ultimoSettings['footer-right-text'];
+  }
+  
+  /**
+   * Function that removes Help
+   */
+  public function removeHelpTab() {
+    global $ultimoSettings;
+
+    // if hide Help Tabs
+    if (!$ultimoSettings['help-tabs']) {
+      $screen = get_current_screen();
+      $screen->remove_help_tabs();
+    }
+  }
+
+  /**
+   * Function that removes Screen Options
+   */
+  public function removeSOTab($display_boolean, $wp_screen_object) {
+    global $ultimoSettings;
+    
+    // If hide Screen Options
+    if (!$ultimoSettings['screen-options-tabs']) {
+      $wp_screen_object->render_screen_layout();
+      $wp_screen_object->render_per_page_options();
+      return false;
+    }
+    
+    else return true;
+  }
+  
   
 }
 
 /**
  * Finally we get to run our plugin.
  */
-$MaterialAdmin = MaterialAdmin::init();
+$UltimoWP = UltimoWP::init();
+global $UltimoWP;
