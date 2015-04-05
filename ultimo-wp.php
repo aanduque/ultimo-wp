@@ -1,15 +1,11 @@
 <?php
 
 /*
-  Plugin Name: Ultimo WP
+  Plugin Name: Ultimo WP Dashboard Theme
   Plugin URI: http://codecanyon.net/item/wp-admin-menu-manager/9520160
   Description: The absolute WP Dashboard Theme.
   Version: 0.0.1
  */
-
-// TODO
-// Responsividade do admin bar
-// Adicionar 8 presets
 
 /**
  * Loads our incredibily awesome Paradox Framework, which we are going to use a lot.
@@ -149,13 +145,22 @@ class UltimoWP extends ParadoxPlugin {
    * Place code that will be run on first activation
    */
   public function onActivation() {
+    global $ultimoSettings;
     
+    // Check if activation exists
+    $isActive = get_option($this->id.'-activated');
+    
+    if (!$isActive) {
+      var_dump($ultimoSettings);
+      $this->runCompiler($ultimoSettings);
+      update_option($this->id.'-activated', true);
+    }
   }
   
   /**
    * Recomplie our custom scss generated to apply new Color Scheme, based on user options
    */
-  public function runCompiler($options, $css) {
+  public function runCompiler($options, $css = '') {
     
     // Get custom SASS
     ob_start();
@@ -188,7 +193,7 @@ class UltimoWP extends ParadoxPlugin {
     add_filter('admin_body_class', array($this, 'bodyClass'));
     
     // Remove Color Schemes from profile_personal_options
-    // add_action('admin_head', array($this, 'removeColorSchemes'));
+    add_action('admin_head', array($this, 'removeColorSchemes'));
     
     // Remove Tabs
     add_action('admin_head', array($this, 'removeHelpTab'));
@@ -206,6 +211,9 @@ class UltimoWP extends ParadoxPlugin {
 
     // Remove Howdy
     add_filter('admin_bar_menu', array($this, 'removeHowdy'), 25);
+    
+    // On Activation
+    add_action('init', array($this, 'onActivation'));
     
   }
   
