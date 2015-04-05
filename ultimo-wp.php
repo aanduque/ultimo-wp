@@ -151,7 +151,7 @@ class UltimoWP extends ParadoxPlugin {
     $isActive = get_option($this->id.'-activated');
     
     if (!$isActive) {
-      var_dump($ultimoSettings);
+      // var_dump($ultimoSettings);
       $this->runCompiler($ultimoSettings);
       update_option($this->id.'-activated', true);
     }
