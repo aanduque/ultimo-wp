@@ -20,6 +20,7 @@
 #wpadminbar .quicklinks .ab-empty-item,
 #wpadminbar .shortlink-input {
   height: @topbar-height;
+  line-height: @topbar-height;
 }
 
 #wpadminbar .quicklinks > ul > li > a {
@@ -270,6 +271,21 @@ body.folded {
   }
 }
 
+@media only screen and (min-width: 782px) and (max-width: 960px) {
+  body.auto-fold {
+    .custom-site-logo {
+      width: 60px !important;
+
+      // Center text when needed
+      text-align: center !important;
+
+      // Hide Logo normal
+      .indigo-logo {display: none;}
+      .indigo-logo-mini {display: inline-block!important;}
+    }
+  }
+}
+
 // Vsit Site
 #wp-admin-bar-site-name {
 
@@ -308,5 +324,36 @@ body.folded {
 
     //.pull-right;
     border-radius: 20px;
+  }
+}
+
+#wpadminbar #wp-admin-bar-my-account.with-avatar #wp-admin-bar-user-actions>li {
+  margin-left: 16px;
+}
+
+#wp-admin-bar-user-info {
+  .avatar {display: none;}
+}
+
+#wpadminbar #wp-admin-bar-user-actions.ab-submenu {
+  padding: 6px 0 16px;
+}
+
+#wp-admin-bar-user-actions {
+  margin-bottom: -16px !important;
+  
+  li a.ab-item {
+    text-transform: uppercase !important;
+    font-size: 11px !important;
+    height: auto !important;
+    line-height: auto !important;
+    margin: 0 -16px !important;
+    padding: 8px 12px !important;
+    display: block;
+    background: rgba(255, 255, 255, .6);
+    
+    &:hover {
+      background: #fff;
+    }
   }
 }

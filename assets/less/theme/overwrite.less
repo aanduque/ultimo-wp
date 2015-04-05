@@ -1,79 +1,46 @@
 // Filter bars, acrros the app
 .wp-filter {
-	.make-box;
+  .make-box;
 }
 
 // Resolving border box issues
 .theme *,
 #plugin-information-tabs *,
 #plugin-information * {
-	//.box-sizing(content-box) !important;
+  //.box-sizing(content-box) !important;
 }
 
 // Dashboard Widgets
 .postbox {
-	.make-box;
+  .make-box;
 
-	// header
-	.hndle {
-		 background-color: @base-white-hover;
-		 padding: 0 15px !important;
-		 border: none;
-		 font-weight: 500;
-		 line-height: 50px !important;
-	}
+  // header
+  .hndle {
+    background-color: @base-white-hover;
+    padding: 0 15px !important;
+    border: none;
+    font-weight: 500;
+    line-height: 50px !important;
+  }
 
   .handlediv, 
   .handlediv:before {
-		line-height: 50px !important;
-		height: 50px;
-		padding: 0 !important;
-	}
+    line-height: 50px !important;
+    height: 50px;
+    padding: 0 !important;
+  }
 }
 
 // Buttons accros the app
 .wp-core-ui .button {
-	border-width: 0 0 3px 0;
-	border-radius: 0;
-	.transition(all 100ms linear);
-	.box-sizing(border-box);
+  border-width: 0 0 3px 0;
+  border-radius: 0;
+  .transition(all 100ms linear);
+  .box-sizing(border-box);
 }
 
 .button.button-primary {
 
-}
-
-// - - - - - - - - - - - - - - - - 
-// Login Screen
-// - - - - - - - - - - - - - - - -
-
-body.login {
-  margin-top: -60px !important;
-  
-  #loginform {
-    .make-box;
-  }
-  
-  #wp-submit {
-    font-size: 14px;
-    height: 46px;
-    line-height: 44px;
-    padding: 0 36px;
-    display: block;
-    
-    display: block !important;
-    width: auto;
-    width: 100%;
-    margin: 20px auto -20px auto;
-    text-transform: uppercase;
-  }
-  
-  .login h1 a {
-    padding: 30px 0;
-    height: auto !important;
-    background-size: auto 100% !important;
-  }
-  
 }
 
 // - - - - - - - - - - - - - - - - 
@@ -83,11 +50,11 @@ body.login {
 table.widefat {
   .make-box;
   margin: 30px 0;
-  
+
   #the-list {
     border: none !important;  
   }
-  
+
   // Head and Footer
   thead tr,
   tfoot tr {
@@ -97,7 +64,7 @@ table.widefat {
     font-weight: 500;
     line-height: 50px !important;
   }
-  
+
   th {     
     text-transform: uppercase;
     font-size: 12px !important;
@@ -114,11 +81,11 @@ table.widefat {
 }
 
 .screen-meta-toggle {
-	.make-box !important;
-	text-transform: uppercase;
-	outline: none !important;
+  .make-box !important;
+  text-transform: uppercase;
+  outline: none !important;
 
-	a {font-size: 11px !important;}
+  a {font-size: 11px !important;}
 }
 
 .screen-meta-toggle,
@@ -126,22 +93,40 @@ table.widefat {
   z-index: 999;
 }
 
-
+// - - - - - - - - - - - - - - - - 
 // Alerts
-.wrap .updated {
-	.alert;
-	border-bottom: solid 5px @brand-success;
-
-	p {
-		font-weight: 300;
-		padding: 0!important;
-		margin: 0 !important;
-	}
+// - - - - - - - - - - - - - - - -
+#message,
+.error,
+.updated,
+.update-nag,
+.below-h2,
+.updated.below-h2,
+.error.below-h2 {
+  
+  .alert;
+  padding: 15px !important;
+  // margin: 0 !important;
+  
+  border-left: none !important;
+  border-top: none !important;
+  border-right: none !important;
+  
+  &.updated { border-bottom: solid 5px @brand-success; }
+  &.error   { border-bottom: solid 5px @brand-danger; }
+  &.woocommerce-message.updated { border-bottom: solid 5px @brand-info; }
+  &.update-nag { border-bottom: solid 5px @brand-warning; display: block !important;}
+  
+  p {
+    font-weight: 300;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
 }
 
 .wp-core-ui .button-group.button-hero .button, .wp-core-ui .button.button-hero {
-	font-size: 14px;
-	height: 46px;
-	line-height: 44px;
-	padding: 0 36px;
+  font-size: 14px;
+  height: 46px;
+  line-height: 44px;
+  padding: 0 36px;
 }

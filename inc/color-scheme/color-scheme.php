@@ -92,6 +92,11 @@ $indigo-icon-color: #777;
     height: <?php echo $options['header-height']; ?>px !important;
   }
 
+  #wpadminbar .quicklinks .ab-empty-item, #wpadminbar .shortlink-input {
+    height: <?php echo $options['header-height']; ?>px !important;
+    line-height: <?php echo $options['header-height']; ?>px !important;
+  }
+
   #wpadminbar .quicklinks > ul > li > a,
 
   #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .ab-icon,
@@ -106,6 +111,13 @@ $indigo-icon-color: #777;
   }
 
 <?php endif; ?>
+
+#adminmenu li.wp-menu-separator {
+  height: 0;
+  margin: 7px 0;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.08);
+  border-top: solid 1px darken(<?php echo $options['bg-base']; ?>, 10%) !important;
+} 
 
 body.login h1 a {
   background-image: url(<?php echo $options['login-page-logo']['url']; ?>) !important;

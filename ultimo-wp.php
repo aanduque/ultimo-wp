@@ -7,6 +7,10 @@
   Version: 0.0.1
  */
 
+// TODO
+// Responsividade do admin bar
+// Adicionar 8 presets
+
 /**
  * Loads our incredibily awesome Paradox Framework, which we are going to use a lot.
  */
@@ -18,10 +22,6 @@ require 'paradox/paradox-plugin.php';
 require 'inc/redux-framework/redux-framework.php';
 // Loads the Plugin
 require 'admin/admin.php';
-// Loads the Plugin
-require 'inc/wp-admin-menu-manager/wp-admin-menu-manager.php';
-// WhiteLabel WPAMM
-add_filter('wpamm/settings/whitelabel', '__return_true');
 
 /**
  * Our plugin starts here
@@ -107,14 +107,37 @@ class UltimoWP extends ParadoxPlugin {
   }
   
   /**
+   * Enqueue and register Frontend JavaScript files here.
+   */
+  public function enqueueFrontendStyles() {
+    // Common and Admin styles
+    wp_dequeue_style('admin-bar');
+    wp_enqueue_style('dashicons');
+    wp_enqueue_style($this->id.'common', $this->url('assets/css/common.min.css'));
+    wp_enqueue_style($this->id.'frontend', $this->url('assets/css/frontend.min.css'));
+    
+    // Custom CSS
+    $this->addCustomCSS();
+  }
+  
+  /**
    * We need to attach our css, saved on the DB to the actual css loaded across the plugin
    */
   public function addCustomCSS() {
+    
     // Get custom CSS saved
     $css = get_option($this->id.'compiledCss');
     
+    // Adicitonal CSS to login Screen
+    $login = 'html {padding-top: 0px !important;}';
+    
     // Check and append
-    if ($css) wp_add_inline_style($this->id.'admin', $css);
+    if ($css) { 
+      wp_add_inline_style($this->id.'admin', $css);
+      wp_add_inline_style($this->id.'login', $css.$login);
+      wp_add_inline_style($this->id.'frontend', $css);
+    }
+    
   }
   
   /**
@@ -157,17 +180,6 @@ class UltimoWP extends ParadoxPlugin {
   }
   
   /**
-   * Adds WPAMM, whitelabel it and change its menu to a submenu sttaus
-   */
-  public function addWPAMM() {
-      
-    // Add Filter to whitelabel WPAMM
-
-    
-  }
-  
-  
-  /**
    * Place code for your plugin's functionality here.  
    */
   public function Plugin() {
@@ -175,8 +187,8 @@ class UltimoWP extends ParadoxPlugin {
     // adds body class to our admin pages
     add_filter('admin_body_class', array($this, 'bodyClass'));
     
-    // Add WPAMM and whitelabel it
-    add_action('init', array($this, 'addWPAMM'));
+    // Remove Color Schemes from profile_personal_options
+    // add_action('admin_head', array($this, 'removeColorSchemes'));
     
     // Remove Tabs
     add_action('admin_head', array($this, 'removeHelpTab'));
@@ -201,6 +213,15 @@ class UltimoWP extends ParadoxPlugin {
    * Adds custom body class, based on our theme
    */
   public function bodyClass($classes) {
+    global $ultimoSettings;
+    
+    // Add new classes, if set
+    if ($ultimoSettings['menu-separators']) $classes .= 'ultimo-separators ';
+    if ($ultimoSettings['menu-icons'])      $classes .= 'ultimo-icons ';
+    
+    // Add theme
+    $classes .= "ultimo-wp-{$ultimoSettings['preset']} ";
+    
     return $classes.$this->id;
   }
   
@@ -298,6 +319,13 @@ class UltimoWP extends ParadoxPlugin {
     else return true;
   }
   
+  /**
+   * Remove color scheme selector from users
+   */
+  public function removeColorSchemes() {
+     global $_wp_admin_css_colors;
+     $_wp_admin_css_colors = 0;
+  }
   
 }
 
@@ -306,3 +334,14 @@ class UltimoWP extends ParadoxPlugin {
  */
 $UltimoWP = UltimoWP::init();
 global $UltimoWP;
+
+// Loads WPAMM
+function loadWPAMM() {
+  // Loads the Plugin
+  require 'inc/wp-admin-menu-manager/wp-admin-menu-manager.php';
+  // WhiteLabel WPAMM
+  // add_filter('wpamm/settings/whitelabel', '__return_true');
+}
+
+// Hooks WPAMM Loading
+add_action('after_setup_theme', 'loadWPAMM');

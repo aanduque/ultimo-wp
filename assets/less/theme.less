@@ -4,7 +4,10 @@
  *
  */
 
-html {padding-top: @topbar-height !important;}
+@media screen and (min-width: 782px) {
+  html {padding-top: @topbar-height !important;}
+}
+
 a {text-decoration: none !important;}
 
 .text-left           { text-align: left; }
@@ -17,6 +20,9 @@ a {text-decoration: none !important;}
 [class^='ion-']:not(.fa-no-margin) {
    margin-right: 6px;
 }
+
+// Our Custom Mixins
+@import "theme/mixins.less";
 
 // Sidebar and Stage
 @import "theme/sidebar.less";

@@ -1,0 +1,87 @@
+// FontAwesome
+@import "font-awesome/font-awesome.less";
+
+// Bootstrap
+@import "bootstrap/bootstrap.less";
+
+// Our Custom Mixins:
+@import "bootcanvas/bootcanvas-mixins";
+
+// Our Theme: Bootcanvas
+@import "bootcanvas/bootcanvas";
+
+// - - - - - - - - - - - - - - - - 
+// Login Screen
+// - - - - - - - - - - - - - - - -
+
+body.login {
+  
+  #loginform,
+  #lostpasswordform {
+    .make-box;
+    padding-bottom: 24px;
+  }
+  
+  #wp-submit {
+    font-size: 14px;
+    height: 46px;
+    line-height: 44px;
+    padding: 0 36px;
+    display: block;
+    
+    display: block !important;
+    width: auto;
+    width: 100%;
+    margin: 20px auto -20px auto;
+    text-transform: uppercase;
+  }
+  
+  .login h1 a {
+    padding: 30px 0;
+    height: auto !important;
+    background-size: auto 100% !important;
+  }
+  
+}
+
+#loginform .submit,
+#lostpasswordform .submit {
+  display: block;
+  overflow: hidden;
+}
+
+#loginform .submit {
+  margin-top: 24px !important;
+}
+
+#loginform .submit input,
+#lostpasswordform .submit input {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+// Hide Back to Blog link 
+#backtoblog {display: none;}
+
+// Nav
+#nav {
+  padding: 0 !important;
+  margin: 0 !important;
+  
+  a {
+    width: 100%;
+    text-transform: uppercase;
+    display: inline-block;
+    text-align: center;
+    font-size: 80%;
+    margin: 12px 0 0 0;
+  }
+}
+
+// Buttons accros the app
+.wp-core-ui .button {
+	border-width: 0 0 3px 0;
+	border-radius: 0;
+	.transition(all 100ms linear);
+	.box-sizing(border-box);
+}

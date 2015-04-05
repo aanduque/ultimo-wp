@@ -1,0 +1,65 @@
+// FontAwesome
+@import "font-awesome/font-awesome.less";
+
+// Bootstrap
+@import "bootstrap/bootstrap.less";
+
+// Our Custom Mixins:
+@import "bootcanvas/bootcanvas-mixins";
+
+// Our Theme: Bootcanvas
+@import "bootcanvas/bootcanvas";
+
+// - - - - - - - - - - - - - - - - 
+// Frontend
+// - - - - - - - - - - - - - - - -
+
+// Sidebar Width
+@sidebar-width: 250px;
+@sidebar-folded-width: 60px;
+@topbar-height: 60px;
+
+// Sidebar and Stage
+@import "theme/wpadminbar-default.less";
+
+// WP Admin Bar
+@import "theme/wpadminbar.less";
+
+html:not(.wp-toolbar) {padding-top: 50px !important;}
+body:not(.wp-admin) {
+
+  #wpadminbar,
+
+  #wpadminbar .quicklinks > ul > li > a,
+
+  #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .ab-icon,
+  #wpadminbar .ab-icon,
+  #wpadminbar .ab-item:before,
+
+  #wpadminbar .menupop .menupop > .ab-item:before,
+  #wpadminbar .ab-top-secondary .menupop .menupop > .ab-item:before,
+
+  #wpadminbar #adminbarsearch,
+  
+  #wp-admin-bar-my-site-logo {
+    height: 50px !important;
+  }
+  
+  #wpadminbar .quicklinks .ab-empty-item, #wpadminbar .shortlink-input {
+    height: 50px !important;
+    line-height: 50px !important;
+  }
+
+  #wpadminbar .quicklinks > ul > li > a,
+
+  #wpadminbar > #wp-toolbar > #wp-admin-bar-root-default .ab-icon,
+  #wpadminbar .ab-icon,
+  #wpadminbar .ab-item:before,
+
+  #wpadminbar .menupop .menupop > .ab-item:before,
+  #wpadminbar .ab-top-secondary .menupop .menupop > .ab-item:before,
+
+  #wpadminbar #adminbarsearch {
+    line-height:  50px !important;
+  } 
+}

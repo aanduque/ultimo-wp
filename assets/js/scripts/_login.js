@@ -4,4 +4,8 @@
  */
 (function($) {
 
+  // Move nav to the main block
+  $('#nav').insertAfter('#loginform p:last-child, #lostpasswordform p:last-child');
+  
+  
 })(jQuery);
